@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Button, Form } from 'react-bootstrap';
 import './screenThongKe.css'
 import Chart from './ChartThongKe/Chart'
-import PieChartExample from './ChartThongKe/PieChartExample.JS'
 import axios from 'axios';
 import { findByNam, findThongKeTheoThang } from '../../util/ApiRouter';
 export default function ScreenThongKe() {
@@ -229,7 +228,6 @@ export default function ScreenThongKe() {
                     <div className='thongke-fluid-right'>
                         <h5 className='thongke-fluid-right-title'>Thống kế lượng tương tác tour các tháng trong nắm {selectedNam}</h5>
                         <Chart data={data} />
-                        {/* <PieChartExample /> */}
                     </div>
                     {/* <!-- END STACK CHART CONTROLS PORTLET--> */}
                     <div className='thongke-fluid-left'>

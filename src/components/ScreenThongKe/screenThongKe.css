@@ -1,0 +1,188 @@
+.thongke-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background-image: url('../../assets/nganha.jpg');
+    height: 100vh;
+    width: 100%;
+}
+.thongke-header {
+    flex: 0.03;
+    background-color: rgba(128, 128, 128, 0.486);
+    padding: 10px;
+    font-size: 16px;
+    color: white; 
+}
+.row-fluid {
+    display: flex;
+    flex: 0.15;
+    flex-direction: row;
+    justify-content: flex-start;
+    /* background-color: rgba(0, 128, 0, 0.411); */
+    padding: 20px;
+
+}
+
+.span3 {
+    margin-left: 20px;
+    display: flex;
+    flex: 0.23;
+    flex-direction: column;
+    justify-content: center;
+
+    color: white;
+    align-items: center;
+    width: 100%;
+}
+
+.dashboard-blue {
+    background-color: #27a9e3;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    width: 100%;
+    /* padding: 10px; */
+}
+
+.dashboard-green {
+    background-color: #28b779;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    width: 100%;
+    /* padding: 10px; */
+}
+
+.dashboard-purple {
+    background-color: #852b99;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    width: 100%;
+    /* padding: 10px; */
+}
+
+.dashboard-yellow {
+    background-color: #ffb848;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    width: 100%;
+    /* padding: 10px; */
+}
+
+.visual {
+    flex: 0.8;
+    /* font-size: 17px; */
+    font-weight: bold;
+    text-align: end;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    padding: 10px;
+}
+
+.number {
+    font-size: 40px;
+    font-weight: normal;
+}
+
+.more {
+    clear: both;
+    display: block;
+    padding: 5px 10px 5px 10px;
+    transform: uppercase;
+    font-weight: 300;
+    color: #fff;
+    font-size: 11px;
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+    text-shadow: none !important;
+    background-color: rgba(0, 0, 0, 0.226);
+    width: 100%;
+}
+
+.more :hover {
+    outline: 0;
+}
+.thongke-content {
+    display: flex;
+    flex: 0.3;
+    /* background-color: antiquewhite; */
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    margin: 30px;
+}
+
+.thongke-fluid {
+    display: flex;
+    flex: 1;
+    flex-direction: row;
+}
+.thongke-fluid-left {
+    display: flex;
+    flex: 0.465;
+    flex-direction: column;
+    /* border: 0.5px #28b779 solid; */
+    /* overflow: 1; */
+    border-radius: 10px;
+    margin-left: 20px;
+    font-size: 13px;
+}
+.thongke-fluid-left-title {
+    padding-top: 10px;
+    padding-left: 20px;
+    flex: 0.1;
+    background-color: #852b99;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    align-items: center;
+    /* font-size: 14px; */
+    color: white;
+    max-height: 42px;
+}
+.thongke-table {
+    flex: 0.9;
+    height: auto;
+    /* background-color: #27a9e3; */
+    /* flex-direction: row-reverse; */
+}
+.thongke-fluid-right {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    flex: 0.465;
+    border-radius: 10px;
+}
+.thongke-fluid-right-title {
+    /* flex: 0.1; */
+    padding-top: 10px;
+    padding-left: 20px;
+    background-color: #27a9e3;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    color: white;
+    height: 42px;
+}
+.thongke-table-header {
+    background-color: gray;
+}
+.thongke-table-header th {
+    border: 1px gray solid;
+}
+.thongke-table-tbody {
+    background-color: white;
+    overflow-y: scroll;
+    max-height: 200px;
+}
+.thongke-table-tbody td {
+    border: 1px gray solid;
+}
+.thongke-table-tbody-tr {
+    height: 30px;
+    /* font-weight: bold; */
+}
+.thongke-table-tbody-tr td {
+    padding-left: 10px;
+}

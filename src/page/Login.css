@@ -1,0 +1,102 @@
+.Login {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+.Login-left {
+    display: flex;
+    flex: 0.3;
+    height: max-content;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+    align-items: center;
+}
+
+.Login-right {
+    display: flex;
+    flex: 0.7;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    min-height: 100vh;
+    background-image: url('https://firebasestorage.googleapis.com/v0/b/tourapp-d8ea8.appspot.com/o/bgrImage.png?alt=media&token=6359b0c1-fb72-485e-bdd1-3068b31a496f');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.Login-title {
+    font-size: 56px;
+    color: rgb(0, 113, 211);
+    font-weight: 300;
+
+}
+
+.Login-group {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.button-login {
+    width: 60%;
+    height: 10%;
+    font-size: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+/* .img-wel {
+    display: flex;
+    flex: 0.1;
+    width: 30%;
+    height: 80%;
+} */
+
+.Logo-left {
+    flex: 0.05;
+}
+
+.group-control {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    float: left;
+    align-items: start;
+}
+
+.icon-footer {
+    width: 20%;
+    height: 20%;
+}
+
+.label-login {
+    float: left;
+
+}
+
+/* @media (prefers-reduced-motion: no-preference) {
+    .Logo-left {
+      animation: App-logo-spin infinite 10s linear;
+    }
+  }
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(90deg);
+    }
+  } */

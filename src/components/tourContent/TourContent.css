@@ -1,0 +1,220 @@
+.image-item {
+  width: 100px;
+  height: 100px;
+}
+
+.group-control {
+  justify-content: center;
+  padding: 20px;
+}
+
+.title-them-tour {
+  justify-content: center;
+  align-items: center;
+  flex: 0.1;
+}
+
+.content-root {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: flex-start;
+  /* background-image: url('../../assets/bgr.png'); */
+  background-image: url('https://firebasestorage.googleapis.com/v0/b/tourapp-d8ea8.appspot.com/o/bgr-content.jpeg?alt=media&token=0f6e77c2-a8bf-4a75-94c1-844fa76acf3b');
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* box-shadow: 10px 10px 5px 5px black inset; */
+}
+
+.locate_popub {
+  /* background-color: antiquewhite; */
+  position: absolute;
+}
+
+.content-left {
+  position: relative;
+
+}
+
+#table-scroll {
+  width: 100%;
+  height: 813px;
+  overflow: auto;
+}
+
+.content-left table {
+  width: 100%;
+  /* background-image: url('../../assets/bgr_content.png'); */
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+.content-left table * {
+  /* background:yellow; */
+  color: black;
+}
+
+.content-left table thead th .text {
+  position: absolute;
+  top: -20px;
+  z-index: 2;
+  height: 20px;
+  width: 35%;
+  border: 1px solid red;
+}
+
+.title_danhsach {
+  font-size: 35px;
+  text-align: center;
+  font-weight: bold;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  /* background-color: rgb(255, 255, 131); */
+  border-radius: 30px;
+  color: wheat;
+}
+
+.table {
+  width: 100%;
+  background-color: #50555c;
+  border-radius: 30px;
+
+}
+
+.thead_table tr .col_ten {
+  font-size: 13px;
+  text-align: center;
+  width: 250px;
+  font-weight: 'bold';
+  color: #fff;
+}
+
+.thead_table tr .col_anh {
+  font-size: 13px;
+  text-align: center;
+  width: 300px;
+  font-weight: 'bold';
+  color: #fff;
+}
+
+.thead_table tr .col_thong_tin {
+  font-size: 13px;
+  text-align: center;
+  width: 300px;
+  font-weight: 'bold';
+  color: #fff;
+}
+
+.thead_table tr .col_info {
+  font-size: 13px;
+  text-align: center;
+  font-weight: 'bold';
+  color: #fff;
+}
+
+.thead_table tr .col_stt {
+  background-color: rgb(243, 241, 141);
+  font-size: 13px;
+  text-align: center;
+  width: 10px;
+}
+
+.tbody_table tr {
+  padding: 5px;
+  border-radius: 10px;
+  /* background-color: rgb(203, 247, 247); */
+  border: 3px solid;
+  height: 250px;
+  border-color: blanchedalmond;
+  font-size: 16px;
+}
+
+.tbody_table tr td * {
+  padding-left: 5px;
+  font-size: 13px;
+  color: #fff;
+  font-weight: 500;
+}
+
+.btn_sua {
+  background: none;
+  width: 180px;
+  margin: 10px;
+  background-color: white;
+  color: rgb(229, 255, 0);
+  border-radius: 10px;
+  border: 3px solid;
+  border-color: rgb(200, 255, 0);
+}
+
+.btn_xoa {
+  background: none;
+  width: 180px;
+  margin: 10px;
+  background-color: white;
+  color: red;
+  border-radius: 10px;
+  border: 3px solid;
+  border-color: red;
+
+}
+
+.bnt_them_hd {
+  background: none;
+  width: 180px;
+  margin: 10px;
+  background-color: white;
+  color: rgb(0, 110, 255);
+  border-radius: 10px;
+  border: 3px solid;
+  border-color: rgb(0, 89, 255);
+}
+
+/* popup xoa tour */
+.xoa_popup .content_popup_xoa {
+  width: 350px;
+}
+
+.search-result {
+  position: absolute;
+  top: 175px;
+  left: 516px;
+  background: #50555c83;
+  border-radius: 10px;
+  height: auto;
+  width: 800px;
+  z-index: 1;
+  max-height: 350px;
+  overflow: auto;
+}
+
+.search-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100px;
+  margin: 5px;
+  cursor: pointer;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+.search-item:hover {
+  background: #50555c83;
+}
+
+.image-item {
+  padding-left: 10px;
+  width: 100px;
+  height: 100px;
+
+}
+
+.search-item p {
+  font-size: 20px;
+  font-weight: bold;
+  padding-left: 10px;
+  color: white;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}

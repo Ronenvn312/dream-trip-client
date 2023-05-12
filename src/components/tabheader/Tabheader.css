@@ -1,0 +1,98 @@
+.toolbar {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+
+.menu {
+    width: 200px;
+    flex-direction: column;
+}
+
+.right-widget {
+    flex: 0.9;
+    justify-content: flex-end;
+    padding-right: 6%;
+}
+
+
+.item-group {
+    background: none;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: cursive;
+}
+
+
+.container-home {
+    display: flex;
+    flex: 1;
+    min-height: 100vh;
+    flex-direction: row;
+    background-color: rgba(74, 166, 228, 0.829);
+    justify-content: center;
+}
+
+
+
+.custom-toolbar {
+    display: flex;
+    flex: 0.2;
+    flex-direction: row;
+    padding: 10px;
+}
+.left-contain {
+    display: flex;
+    flex: 0.12;
+    min-height: 100vh;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    border-right: 2px solid;
+    background-image: url('https://firebasestorage.googleapis.com/v0/b/tourapp-d8ea8.appspot.com/o/bgrImage.png?alt=media&token=6359b0c1-fb72-485e-bdd1-3068b31a496f');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.right-contain {
+    display: flex;
+    /* padding-left: 10px; */
+    flex: 0.88;
+    height: 100vh;
+}
+
+.right-contain .App {
+    width: 600px;
+    height: 600px;
+    /* overflow: hidden; */
+}
+
+.list-group {
+    margin-top: 10px;
+    float: left;
+    text-align: left;
+    width: 100%;
+    background: none;
+}
+
+.user-name {
+    font-size: 20px;
+    color: white;
+}
+
+.user-email {
+    color: black;
+}
+
+.user-avatar {
+    margin: 10px;
+    border-radius: 100px;
+    min-width: 90px;
+    min-height: 90px;
+    background-color: white;
+}
+
+.btn_Them {
+    width: 300px;
+}

@@ -63,15 +63,19 @@ export const Tabheader = (props) => {
   }
   // handle thong tin user
   const handleThongTinUser = async () => {
-    console.log(email)
-    const result = await axios.get(findNguoiDungByEmail, {
-      params: {
-        email: email.userName,
+    if (email != null) {
+      console.log(email)
+      const result = await axios.get(findNguoiDungByEmail, {
+        params: {
+          email: email.userName,
+        }
+      })
+      if (result.data) {
+        setThongTinUser(result.data)
+        console.log(result.data)
       }
-    })
-    if (result.data) {
-      setThongTinUser(result.data)
-      console.log(result.data)
+    } else {
+      navigate("/")
     }
   }
   //hand Click show Alert 
@@ -202,7 +206,7 @@ export const Tabheader = (props) => {
       {isLoading ? (
         <div className='loading_view'>
           {/* <img className='logo-loading' src={logo} alt='logo' /> */}
-          <img className='image-loading' src={bro} alt='img-loading'/>
+          <img className='image-loading' src={bro} alt='img-loading' />
           <div className='logo-loading' >
           </div>
           <div className="loading">

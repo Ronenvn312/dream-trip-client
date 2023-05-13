@@ -92,6 +92,8 @@ function Login() {
     if (email) {
       navigate("/home")
       // localStorage.removeItem("email")
+    } else {
+      navigate("/")
     }
   }, [])
   return (
@@ -105,7 +107,7 @@ function Login() {
           </div>
           <div className="loading">
           </div>
-          <h2 className='title-loading'>Đang đăng xuất...</h2>
+          <h2 className='title-loading'>Loading...</h2>
         </div>
       ) : (
         <div style={{ display: "flex", flexDirection: "row", flex: 1 }}>

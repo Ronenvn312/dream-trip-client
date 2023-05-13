@@ -1,5 +1,5 @@
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Map, { FullscreenControl, GeolocateControl, Marker, NavigationControl, Popup, ScaleControl } from 'react-map-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import 'maplibre-gl/dist/maplibre-gl.css';
@@ -7,18 +7,12 @@ import Form from 'react-bootstrap/Form';
 import FloatingLabel from 'react-bootstrap/esm/FloatingLabel';
 import Button from 'react-bootstrap/Button';
 import './MapBox.css'
-import { AddressAutofill } from '@mapbox/search-js-react';
 import axios from "axios";
-import { getDownloadURL } from 'firebase/storage'
 import { firebase } from '../../util/config';
-// npm install @turf/turf
-import * as turf from '@turf/turf';
 import PopupNote from "../Popup/PopupNote";
 import { Accordion } from "react-bootstrap";
 import { deleteHoatDong, deleteTour, findAllTour, findAllsHDByTourId, insertHoatDong, insertTour, updateHoatDong, updateTour } from "../../util/ApiRouter";
 
-// A circle of 5 mile radius of the Empire State Building
-const GEOFENCE = turf.circle([-74.0122106, 40.7467898], 5, { units: 'miles' });
 
 
 function MapBox() {
@@ -44,7 +38,7 @@ function MapBox() {
   const [phoBien, setPhoBien] = useState()
   const [hinhAnh, setHinhAnh] = useState("")
   const [showForm, setShowForm] = useState(false)
-  const [danhGia, setDanhGia0] = useState(5.0)
+  const [danhGia, setDanhGia] = useState(5.0)
   const [showFormHoatDong, setShowFormHoatDong] = useState(false)
   const [isDeletePopup, setIsDeletePopup] = useState(false)
   const [isUpdatePopup, setIsUpdatePopup] = useState(false)
@@ -159,26 +153,7 @@ function MapBox() {
   const [nghiDuong, setNghiDuong] = useState(false)
   const [bien, setBien] = useState(false)
   const [tourClicked, setTourClicked] = useState({})
-  const [tour, setTour] = useState({
-    "document_id": tourId,
-    "tenTour": tenTour,
-    "thongTin": thongTinCT,
-    "viTri": diaChi,
-    "soNgay": soNgay,
-    "hinhAnh": [
-      hinhAnh,
-    ],
-    "theLoai": theLoai,
-    "danhGia": danhGia,
-    "phoBien": phoBien,
-    "xuHuong": xuHuong,
-    "longitude": lng,
-    "latitude": lat
-  })
 
-  const handleShowPopup = () => {
-    setShowPopup(true);
-  }
   const handleChangeTenTour = (e) => {
     let tenTour = e.target.value
     setTenTour(tenTour)
@@ -195,10 +170,6 @@ function MapBox() {
     let diaChi = e.target.value
     setDiaChi(diaChi);
     onChangeGetDataSearch(diaChi)
-  }
-  const handleChangeHinhAnh = (e) => {
-    let hinhAnh = e.target.value
-    setHinhAnh(hinhAnh)
   }
  
   const handleChangeCheckTheLoai = (e) => {
@@ -232,13 +203,6 @@ function MapBox() {
     console.log(phuongTien)
     setPhuongTien(phuongTien)
     handleSetPhuongTien(phuongTien)
-  }
-  const data = {
-    longitude: lng,
-    latitude: lat,
-    city: 'Ho Chi Minh City',
-    state: true,
-    image: 'https://firebasestorage.googleapis.com/v0/b/tourapp-d8ea8.appspot.com/o/da-nang-4-ngay-3-dem-handetour.webp?alt=media&token=3053069d-bbd6-47f0-9bba-1589b2f9026e'
   }
   // THAO TÁC VỚI  TOUR
   const [listTour, setListTour] = useState([])
@@ -332,7 +296,6 @@ function MapBox() {
   }
   // Click Thêm mới tour
   const handleClickThemTour = () => {
-    delete tour.document_id;
     setTourId("")
     setTenTour("")
     setTheLoai([])
@@ -460,7 +423,6 @@ function MapBox() {
   const [viTriHD, setViTriHD] = useState()
   const [thongTinHD, setThongTinHD] = useState()
   const [tieuDeHD, setTieuDeHD] = useState()
-  const [hinhAnhHD, setHinhAnhHD] = useState("")
   const [maHD, setMaHD] = useState()
   const handleChangeTieuDe = (e) => {
     setTieuDeHD(e.target.value)
@@ -478,7 +440,6 @@ function MapBox() {
   //Search vị trí Hoạt động
   const [listSearchHD, setListSearchHD] = useState([])
   const onChangeGetDataSearchHD = async (address) => {
-    let arrNewAddress = []
     axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?limit=2&access_token=pk.eyJ1IjoiZGF0bmd1eWVuMzEyMzEyIiwiYSI6ImNsZXZkbXVzYTA1bWwzcm80cmNqMDNxejAifQ.k1FIb4suetF82k91bnkRvg`)
       .then(function (response) {
         setListSearchHD(response.data.features)
@@ -524,7 +485,7 @@ function MapBox() {
       setUrlAmThanh("https://firebasestorage.googleapis.com/v0/b/tourapp-d8ea8.appspot.com/o/mp3s%2Fsound.mp3?alt=media&token=cbb310b2-b3f6-49ae-9d95-3b5785393ccc")
     }
     if (item.hinhAnh[0]) {
-      setHinhAnhHD(item.hinhAnh[0])
+      setUrl(item.hinhAnh[0])
     } else {
       setUrl("https://firebasestorage.googleapis.com/v0/b/tourapp-d8ea8.appspot.com/o/background-loading.jpg?alt=media&token=8b25495c-0949-40a5-8ce6-3ea0bdfa6fdf")
     }
@@ -561,7 +522,6 @@ function MapBox() {
     setViTriHD("")
     setThongTinHD("")
     setThoiGianHD("")
-    setHinhAnhHD("")
     setVideo("")
     setAmThanh("")
     setShowForm(false)
@@ -661,7 +621,6 @@ function MapBox() {
   //Search vị trí
   const [listSearch, setListSearch] = useState([])
   const onChangeGetDataSearch = async (address) => {
-    let arrNewAddress = []
     axios.get(`https://api.mapbox.com/geocoding/v5/mapbox.places/${address}.json?limit=2&access_token=pk.eyJ1IjoiZGF0bmd1eWVuMzEyMzEyIiwiYSI6ImNsZXZkbXVzYTA1bWwzcm80cmNqMDNxejAifQ.k1FIb4suetF82k91bnkRvg`)
       .then(function (response) {
         setListSearch(response.data.features)
@@ -699,7 +658,7 @@ function MapBox() {
     handleResultData()
     setListSearch([])
     setListSearchHD([])
-  }, [tour, listHoatDong])
+  }, [ listHoatDong])
 
   return (
     <Map
@@ -733,7 +692,7 @@ function MapBox() {
         }}
 
       >
-        <img src="https://firebasestorage.googleapis.com/v0/b/tourapp-d8ea8.appspot.com/o/mapbox-icon.png?alt=media&token=a70dd5be-1312-4f84-aa53-c0b6092b9e75" />
+        <img src="https://firebasestorage.googleapis.com/v0/b/tourapp-d8ea8.appspot.com/o/mapbox-icon.png?alt=media&token=a70dd5be-1312-4f84-aa53-c0b6092b9e75" alt="img-maker-icon"/>
       </Marker>
       {showPopup && (
         <Popup
@@ -751,7 +710,7 @@ function MapBox() {
               Wikipedia
             </a>
           </div>
-          <img width="100%" src={popupInfo.image} />
+          <img width="100%" src={popupInfo.image} alt="img-hd-tour"/>
         </Popup>
       )}
       <NavigationControl position="bottom-right" />
@@ -1053,9 +1012,9 @@ function MapBox() {
               <Form.Group style={{ width: "100%" }}>
                 <Form.Label className='label-hinhAnh'>Hình Ảnh:</Form.Label>
                 <div className="view-hinhAnh">
-                  <img style={{ width: 130 }} className='image' src={url} alt="image" />
+                  <img style={{ width: 130 }} className='image' src={url} alt="img" />
                   <div className="group-btn-file">
-                    <input type='file' onChange={handleChange} alt='uri image' ></input>
+                    <input type='file' onChange={handleChange} alt='uri img' ></input>
                     <Button style={{ marginTop: 10 }} variant="outline-secondary" onClick={handleUpload}>Upload Image</Button>{' '}
                   </div>
                 </div>
@@ -1218,9 +1177,9 @@ function MapBox() {
                     <Accordion.Header>Hình ảnh:</Accordion.Header>
                     <Accordion.Body>
                       <div className="view-hinh-anh">
-                        <img style={{ width: 80 }} className='image' src={url} alt="image" />
+                        <img style={{ width: 80 }} className='image' src={url} alt="img" />
                         <div className="group-btn-file">
-                          <input type='file' onChange={handleChange} alt='uri image' ></input>
+                          <input type='file' onChange={handleChange} alt='uri img' ></input>
                           <Button style={{ marginTop: 10 }} variant="outline-secondary" onClick={handleUpload}>Upload</Button>{' '}
                         </div>
                       </div>
@@ -1246,7 +1205,7 @@ function MapBox() {
                           Your browser does not support the video tag.
                         </video>
                         <div className="group-btn-file">
-                          <input type='file' onChange={handleChangeVideo} alt='uri image' ></input>
+                          <input type='file' onChange={handleChangeVideo} alt='uri img' ></input>
                           <Button style={{ marginTop: 10 }} variant="outline-secondary" onClick={handleUploadVideo}>Upload</Button>{' '}
                         </div>
                       </div>

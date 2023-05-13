@@ -4,14 +4,11 @@ import './Home.css'
 import menu from '../assets/menu.png'
 import bro from '../assets/bro.png'
 import logo from '../assets/logo.png'
-import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import TourContent from '../components/tourContent/TourContent';
 function Home(props) {
 
-  const navigate = useNavigate();
   const [disableMenu, setDisableMenu] = useState(true);
   const [showThongBao, setShowThongBao] = useState(false)
   const [isLoading, setIsLoading] = useState(true);
@@ -34,7 +31,7 @@ function Home(props) {
       {isLoading ? (
         <div className='loading_view'>
           <img className='logo-loading' src={logo} alt='logo' />
-          <img className='image-loading' src={bro} />
+          <img className='image-loading' src={bro} alt='img-loading'/>
           <div className='logo-loading' >
           </div>
           <div className="loading">
@@ -53,7 +50,7 @@ function Home(props) {
             </div>
             <div className="right-widget">
               <Button onClick={() => handShowThongBao()} variant="link" className='btn-about' style={{ color: 'white', flex: 0.5, width: '100%', display: 'flex' }}>
-                <img style={{ width: 30, height: 30, marginRight: 10 }} src={require('./../assets/icon_thongbao.png')} />
+                <img style={{ width: 30, height: 30, marginRight: 10 }} src={require('./../assets/icon_thongbao.png')} alt='icon-thongbao'/>
                 About
               </Button>
               <Button href='https://github.com/Ronenvn312/KLTN_Tour' variant="link" className='btn-about' style={{ color: 'white', marginTop: -5, flex: 0.5, width: '100%', display: 'flex' }}>

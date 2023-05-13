@@ -1,20 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, {  useEffect, useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
-import Alert from 'react-bootstrap/Alert';
 import './TourContent.css'
 import axios from 'axios'
-import PopupInfo from '../Popup/PopupInfo';
 import Form from 'react-bootstrap/Form';
-import { useNavigate } from 'react-router-dom';
-import { AppContext } from '../../context/AppContext';
 import PopupNote from '../Popup/PopupNote';
 import PopupTuongTac from '../Popup/PopupTuongTac';
 import { Accordion } from 'react-bootstrap';
 import { checkDatTour, deleteTour, findAllTour, findAllTuongTac, findAllsHDByTourId, findDatTour, searchsTour } from '../../util/ApiRouter';
 export default function TourContent() {
-    const [showInfoPopup, setshowInfoPopup] = useState(false)
-    const [showLocatePopup, setshowLocatePopup] = useState(false)
     const [showPopupTuongTac, setShowPopupTuongTac] = useState(false)
     const [showPopupTour, setShowPopupTour] = useState(false)
     const [tourId, setTourId] = useState()
@@ -28,9 +22,7 @@ export default function TourContent() {
     })
     const [isListDatTourPopup, setIsListDatTourPopup] = useState(false)
     const [listDatTour, setListDatTour] = useState([])
-    const navigate = useNavigate()
     const [resultData, setResultData] = useState([]);
-    const [tourAlter, setTourAlter] = useState(null)
     const [tourcheckeds, setTourCheckeds] = useState([])
     const [isDeletePopup, setIsDeletePopup] = useState(false)
     const [searchResult, setSearchResult] = useState([])
@@ -181,7 +173,7 @@ export default function TourContent() {
 
     useEffect(() => {
         handleResultData();
-    }, [tourAlter, tuongTac, listDatTour, tourSearch, listHoatDong])
+    }, [ tuongTac, listDatTour, tourSearch, listHoatDong])
     return (
         <div className='tour-content'>
 
@@ -206,7 +198,7 @@ export default function TourContent() {
                                 style={{ width: 800 }}
                                 type="text" placeholder="VD: Thành phố Hồ Chí Minh" required />
                             <Button variant="outline-secondary" style={{ marginLeft: 10, width: 80 }}>
-                                <img style={{ width: 30, height: 30 }} src={require('./../../assets/search_icon.png')} />
+                                <img style={{ width: 30, height: 30 }} src={require('./../../assets/search_icon.png')} alt='img-icon-button' />
                             </Button>
                             {/* <Button
 

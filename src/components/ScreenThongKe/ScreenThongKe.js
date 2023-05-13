@@ -8,8 +8,6 @@ export default function ScreenThongKe() {
  
     const dsTour = localStorage.getItem("dsTour")
     const [listTour, setListTour] = useState([])
-    const slTT = 100;
-    const date = new Date();
     const handleShowListTour = () => {
         if (dsTour != null) {
             const list = JSON.parse(dsTour);
@@ -51,7 +49,6 @@ export default function ScreenThongKe() {
         setListThang(listT)
     }
     const handleSearchThongKe = async () => {
-        const new_data = []
         let sum = 0;
         let sumLuotDat = 0;
         let sumLuotThich = 0;

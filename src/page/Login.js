@@ -2,26 +2,17 @@ import React, { useEffect, useState } from 'react'
 import './Login.css'
 import logo from '../assets/logo.png'
 import bro from '../assets/bro.png'
-import wel_human from '../assets/Wel_human.png'
-import { parsePath, useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import Toast from 'react-bootstrap/Toast';
 import axios from 'axios'
 import { logginTaiKhoan } from '../util/ApiRouter'
 function Login() {
   const navigate = useNavigate()
-  // const [values, setValues] = useState({ email: "", password: "" })
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("")
-  const [showErroPassword, setshowErroPassword] = useState(false);
-  const [showErroEmail, setshowErroEmail] = useState(false);
+  const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
-
-  const toggleshowErroPassword = () => setshowErroPassword(!showErroPassword);
-  const toggleshowErroEmail = () => setshowErroEmail(!showErroEmail);
   //event get values
   const [validateEmail, setValidateEmail] = useState({
     "status": true,
@@ -31,17 +22,6 @@ function Login() {
     "status": true,
     "content": ""
   })
-  //submit login
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
-  //   if (handleValidation()) {
-  //     console.log("in validation")
-  //     const { password, email } = values
-  //     localStorage.setItem("currentUser", JSON.stringify(values));
-  //     navigate('/home')
-  //   }
-  // const handlogin
-  const [validated, setValidated] = useState(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -120,7 +100,7 @@ function Login() {
       {isLoading ? (
         <div className='loading_view'>
           <img className='logo-loading' src={logo} alt='logo' />
-          <img className='image-loading' src={bro} />
+          <img className='image-loading' src={bro} alt='img-loading' />
           <div className='logo-loading' >
           </div>
           <div className="loading">
@@ -190,7 +170,6 @@ function Login() {
             </Form>
           </div>
           <div className='Login-right'>
-            {/* <img className='img-wel' src={wel_human} alt='wel' /> */}
           </div>
         </div>)}
     </div>

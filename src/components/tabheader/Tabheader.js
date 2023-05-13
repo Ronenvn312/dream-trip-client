@@ -18,20 +18,16 @@ export const Tabheader = (props) => {
 
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
-  const [expanded, setExpanded] = useState(true);
   const email = JSON.parse(localStorage.getItem("email"));
   const [showInfoPopup, setshowInfoPopup] = useState(false)
   const [values, setValues] = useState({ email: "", password: "" })
-  const [showMapPopup, setshowMapPopup] = useState(false)
   const [showTours, setShowTours] = useState(true)
   const [showThemTours, setShowThemTours] = useState(false)
   const [showThongKe, setShowThongKe] = useState(false)
   const [showTaiKhoan, setShowTaiKhoan] = useState(false)
   const [thongTinUser, setThongTinUser] = useState({})
   const [isLogoutPopup, setIsLogoutPopup] = useState(false)
-  const handleClick = () => {
-    setExpanded(!expanded);
-  };
+
   // click item DASHBOARD
   const handShowActionThemTour = () => {
     setTimeout(() => setIsLoading(true), 10);
@@ -206,7 +202,7 @@ export const Tabheader = (props) => {
       {isLoading ? (
         <div className='loading_view'>
           {/* <img className='logo-loading' src={logo} alt='logo' /> */}
-          <img className='image-loading' src={bro} />
+          <img className='image-loading' src={bro} alt='img-loading'/>
           <div className='logo-loading' >
           </div>
           <div className="loading">

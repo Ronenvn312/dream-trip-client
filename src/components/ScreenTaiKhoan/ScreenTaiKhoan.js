@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import './ScreenTaiKhoan.css'
-import { Alert, Button } from 'react-bootstrap'
 import Accordion from 'react-bootstrap/Accordion';
-import { getDownloadURL } from 'firebase/storage'
 import { firebase } from '../../util/config';
 import axios from 'axios';
 import PopupNote from '../Popup/PopupNote';
 import { logginTaiKhoan, updateMK, updateUser } from '../../util/ApiRouter';
+import { Button } from 'react-bootstrap';
 
 export default function ScreenTaiKhoan(props) {
     const [image, setImage] = useState(null);

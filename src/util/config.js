@@ -10,9 +10,9 @@ import 'firebase/compat/storage';
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: `${process.env.API_KEY}`,
-  authDomain: `${process.env.AUTH_DOMAIN}`,
+  authDomain: "tourapp-d8ea8.firebaseapp.com",
   databaseURL: `${process.env.DATABASE_URL}`,
-  projectId: `${process.env.PROJECT_ID}`,
+  projectId: "tourapp-d8ea8",
   storageBucket: "tourapp-d8ea8.appspot.com",
   messagingSenderId: `${process.env.MESSAGING_SENDERID}`,
   appId: `${process.env.APP_ID}`,

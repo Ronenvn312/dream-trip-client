@@ -13,7 +13,7 @@ const firebaseConfig = {
   authDomain: `${process.env.AUTH_DOMAIN}`,
   databaseURL: `${process.env.DATABASE_URL}`,
   projectId: `${process.env.PROJECT_ID}`,
-  storageBucket: `${process.env.STORAGE_BUCKET}`,
+  storageBucket: "tourapp-d8ea8.appspot.com",
   messagingSenderId: `${process.env.MESSAGING_SENDERID}`,
   appId: `${process.env.APP_ID}`,
   measurementId: `${process.env.MEASUREMENT_ID}`

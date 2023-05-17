@@ -8,7 +8,14 @@
     background: rgba(0, 0, 0, .4);
     display: flex;
 }
-
+.popup-tuong-tac-inner {
+    background: #fff;
+    width: 100%;
+    max-width: 65%;
+    height: auto;
+    border-radius: 20px;
+    margin: auto;
+} 
 .popup-tt-inner {
     width: 100%;
     max-width: 1520px;

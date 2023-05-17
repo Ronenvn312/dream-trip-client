@@ -6,11 +6,11 @@ function PopupTuongTac(props) {
    
     return (props.trigger) ? (
         <div className='popup_container'>
-            <motion.div animate={{ scale: 1 }} initial={{ scale: 0 }} className={clsx("popup-inner", {
+            <motion.div animate={{ scale: 1 }} initial={{ scale: 0 }} className={clsx("popup-tuong-tac-inner", {
                 "popup-inner_user": props.showInfoUserPopup,
                 "popup-inner_add_user": props.addUserPopup
             })}>
-
+  <button className='close-btn' onClick={() => props.setTrigger(!props.trigger)}>x</button>
                 {props.children}
 
             </motion.div>

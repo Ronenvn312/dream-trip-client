@@ -262,8 +262,8 @@ export default function ScreenTaiKhoan(props) {
                             <div className='info-content'>
                                 <div className='avatar-view'>
                                     <img className='avatar' src={url} alt="user avatar" />
-                                    <input type='file' onChange={handleChange} alt='uri image' ></input>
-                                    <Button variant="outline-secondary" onClick={handleUpload}>Upload Image</Button>{' '}
+                                    <input style={{margin: 5}} type='file' onChange={handleChange} alt='uri image' ></input>
+                                    <Button variant="outline-secondary" style={{margin: 5}} onClick={handleUpload}>Upload Image</Button>{' '}
                                 </div>
                                 <div>
                                     <p>Mã (ID) * : {nguoiDung.document_id}</p>

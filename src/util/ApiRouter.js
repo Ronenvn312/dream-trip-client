@@ -56,6 +56,9 @@ export const insertThongKeTour = `${host}/thongKe/insert`
 export const findThongKeTheoThang = `${host}/thongKe/find`
 export const findByNam = `${host}/thongKe/findByNam`
 export const findByThongKeTourNow = `${host}/thongKe/findByThongKeTourNow`
+export const findThongKeByTourId = `http://localhost:8080/thongKe/findByTourId?tourId=EzdyimgA7g3pEub8yo1r`
+export const findByNamAndTourId = `http://localhost:8080/thongKe/findByNamAndTourId`
+
 // API cho tương tác tour
 export const insertTuongTac = `${host}/tuongtac/insert`
 export const updateTuongTac = `${host}/tuongtac/update`

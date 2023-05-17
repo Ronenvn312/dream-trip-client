@@ -19,7 +19,7 @@
     flex-direction: row;
     justify-content: flex-start;
     /* background-color: rgba(0, 128, 0, 0.411); */
-    padding: 20px;
+    padding: 10px;
 
 }
 
@@ -92,7 +92,7 @@
     display: block;
     padding: 5px 10px 5px 10px;
     transform: uppercase;
-    font-weight: 300;
+    font-weight: bold;
     color: #fff;
     font-size: 11px;
     opacity: 0.7;
@@ -112,7 +112,7 @@
     padding: 10px;
     justify-content: center;
     align-items: center;
-    margin: 30px;
+    margin: 10px;
 }
 
 .thongke-fluid {
@@ -129,6 +129,8 @@
     border-radius: 10px;
     margin-left: 20px;
     font-size: 13px;
+    max-height: 450px;
+    overflow: auto;
 }
 .thongke-fluid-left-title {
     padding-top: 10px;
@@ -181,6 +183,11 @@
 }
 .thongke-table-tbody-tr {
     height: 30px;
+    cursor: pointer;
+    /* font-weight: bold; */
+}
+.thongke-table-tbody-tr:hover {
+    background-color: #27a9e3;
     /* font-weight: bold; */
 }
 .thongke-table-tbody-tr td {

@@ -285,7 +285,7 @@ export default function TourContent() {
                             </thead>
                             <tbody className='tbody_table' style={{ height: '500px', overflow: 'scroll' }}>
                                 {resultData.map((item, index) => {
-                                    return <tr key={item.document_id}>
+                                    return <tr key={item.document_id} style={{cursor: 'pointer'}}>
                                         <th style={{ textAlign: 'center', color: 'white', backgroundColor: 'white' }} scope="row"> <p style={{ color: 'black' }}>{index + 1}</p>
                                             <input style={{ width: 25, height: 25 }} type="checkbox" value={item} onClick={e => handClickCheckBox(e, item)} />
                                         </th>

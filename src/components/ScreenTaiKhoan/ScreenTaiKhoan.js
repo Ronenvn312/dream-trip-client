@@ -265,7 +265,7 @@ export default function ScreenTaiKhoan(props) {
                                         <img className='avatar' src={url} alt="user avatar" />
                                     </div>
                                     <label for="file-upload" class="custom-file-upload">
-                                        <i class="fa fa-cloud-upload"></i> Custom Upload
+                                        <i class="fa fa-cloud-upload"></i> Chọn ảnh
                                     </label>
                                     <input id="file-upload" className='input-file' type='file' onChange={handleChange} alt='uri image' ></input>
                                     <Button variant="outline-secondary" style={{ margin: 5 }} onClick={handleUpload}>Upload Image</Button>{' '}

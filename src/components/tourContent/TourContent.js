@@ -126,10 +126,12 @@ export default function TourContent() {
                     document_id: tour.document_id
                 }
             }).then((result) => {
+                setTourCheckeds([])
                 handleResultData();
+                setIsDeletePopup(false)
             }).catch((error) => console.log(error))
         })
-        setTourCheckeds([])
+     
     }
     // Check ALL tour
     // const handleCheckAllTour = () => {

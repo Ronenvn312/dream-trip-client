@@ -257,20 +257,24 @@ export default function ScreenTaiKhoan(props) {
                 <hr />
                 <Accordion defaultActiveKey="0">
                     <Accordion.Item eventKey="0">
-                        <Accordion.Header>Thông tin người dùng</Accordion.Header>
+                        <Accordion.Header>Thông tin (ID Thông tin người dùng) * : {nguoiDung.document_id} </Accordion.Header>
                         <Accordion.Body>
                             <div className='info-content'>
                                 <div className='avatar-view'>
-                                    <img className='avatar' src={url} alt="user avatar" />
-                                    <input style={{margin: 5}} type='file' onChange={handleChange} alt='uri image' ></input>
-                                    <Button variant="outline-secondary" style={{margin: 5}} onClick={handleUpload}>Upload Image</Button>{' '}
+                                    <div className='avatar-image'>
+                                        <img className='avatar' src={url} alt="user avatar" />
+                                    </div>
+                                    <label for="file-upload" class="custom-file-upload">
+                                        <i class="fa fa-cloud-upload"></i> Custom Upload
+                                    </label>
+                                    <input id="file-upload" className='input-file' type='file' onChange={handleChange} alt='uri image' ></input>
+                                    <Button variant="outline-secondary" style={{ margin: 5 }} onClick={handleUpload}>Upload Image</Button>{' '}
                                 </div>
-                                <div>
-                                    <p>Mã (ID) * : {nguoiDung.document_id}</p>
+                                <div className='info-form'>
                                     <p>Email {"(Email)"}*: {email}</p>
                                     <p>Tên người dùng {"(Full Name)"}*: {ten}</p>
                                     <div className='group-input' style={{ flexDirection: "row", display: "flex" }}>
-                                        <input type='text' onChange={(e) => handleChangeTen(e)} value={ten} />
+                                        <input type='text' className='inp-text' placeholder='Nhập tên người dùng' onChange={(e) => handleChangeTen(e)} value={ten} />
                                         {
                                             validateTen.content != "" ? (
                                                 validateTen.status ? <p style={{ color: "red", marginLeft: 10 }}> {validateTen.content}</p> : <p style={{ color: "green", marginLeft: 10 }}>correct!</p>
@@ -279,7 +283,7 @@ export default function ScreenTaiKhoan(props) {
                                     </div>
                                     <p>Địa chỉ {"(Address)"}*: {diaChi}</p>
                                     <div className='group-input' style={{ flexDirection: "row", display: "flex" }}>
-                                        <input type='text' onChange={(e) => handleChangeDC(e)} value={diaChi} />
+                                        <input type='text' className='inp-text' placeholder='Nhập địa chỉ' onChange={(e) => handleChangeDC(e)} value={diaChi} />
 
                                         {
                                             validateDiaChi.content != "" ? (
@@ -289,7 +293,7 @@ export default function ScreenTaiKhoan(props) {
                                     </div>
                                     <p>Điện thoại {"(Phone number)"}*: {sdt}</p>
                                     <div className='group-input' style={{ flexDirection: "row", display: "flex" }}>
-                                        <input type='text' onChange={(e) => handleChangeSDT(e)} value={sdt} />
+                                        <input type='text' className='inp-text' placeholder='Nhập số điện thoại' onChange={(e) => handleChangeSDT(e)} value={sdt} />
                                         {
                                             validateSdt.content != "" ? (
                                                 validateSdt.status ? <p style={{ color: "red", marginLeft: 10 }}> {validateSdt.content}</p> : <p style={{ color: "green", marginLeft: 10 }}>correct!</p>
@@ -341,6 +345,7 @@ export default function ScreenTaiKhoan(props) {
                                     <p>Mật khẩu cũ (Older Password) * : </p>
                                     <div className='group-input' style={{ flexDirection: "row", display: "flex" }}>
                                         <input
+                                            className='inp-text'
                                             type='password'
                                             placeholder='Aa87654321'
                                             onChange={e => onChangeOldPassword(e)}
@@ -355,6 +360,7 @@ export default function ScreenTaiKhoan(props) {
                                     <p>Mật khẩu mới {"(New Password)"}*:</p>
                                     <div className='group-input' style={{ flexDirection: "row", display: "flex" }}>
                                         <input
+                                            className='inp-text'
                                             placeholder='Aa12345678'
                                             type='password'
                                             onChange={e => onChangeNewPassword(e)}
@@ -369,6 +375,7 @@ export default function ScreenTaiKhoan(props) {
                                     <p>Nhập lại mật khẩu mới {"(New Password)"}*:</p>
                                     <div className='group-input' style={{ flexDirection: "row", display: "flex" }}>
                                         <input
+                                            className='inp-text'
                                             placeholder='Aa12345678'
                                             type='password'
                                             onChange={e => onChangeRenewPassword(e)}

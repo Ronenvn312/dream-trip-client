@@ -26,13 +26,46 @@
 }
 .avatar-view{
     display: flex;
+    flex: 0.1;
     flex-direction: column;
     padding: 10px;
+    justify-content: center;
+    align-items: center;
+    
+}
+.info-form {
+    flex: 0.8;
 }
 .avatar {
     margin: 10px;
     border-radius: 100px;
-    width: 130px;
-    height: 160px;
+    width: 160px;
+    min-height: 160px;
+    height: auto;
     margin-right: 10px;
+}
+.avatar-image {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.541);
+    border-radius: 100px;
+    align-items: center;
+    justify-content: center;
+}
+.input-file {
+    display: none;
+}
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+.inp-text {
+    width: 30%;
+    height: 40px;
+    border-radius: 10px;
+    padding-left: 10px;
+}
+.inp-text:hover {
+    background-color: rgba(127, 255, 212, 0.356);
 }

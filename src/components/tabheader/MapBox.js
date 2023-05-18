@@ -171,7 +171,7 @@ function MapBox() {
     setDiaChi(diaChi);
     onChangeGetDataSearch(diaChi)
   }
- 
+
   const handleChangeCheckTheLoai = (e) => {
     let isChecked = e.target.checked;
     console.log(e.target.checked)
@@ -236,6 +236,8 @@ function MapBox() {
     console.log("successful")
     const result = await axios.post(insertTour, tourinsert)
     console.log(result)
+    handleResultData()
+    setShowForm(false);
   }
   //handle Click Cập nhật tour
   const handleUpdate = async () => {
@@ -254,8 +256,8 @@ function MapBox() {
       "danhGia": 4.0,
       "phoBien": phoBien,
       "xuHuong": xuHuong,
-      "longitude": 106.68921221955645,
-      "latitude": 10.772420997560602
+      "longitude": lng,
+      "latitude": lat
     })
     console.log(tourupdate)
     const result = await axios.put(updateTour, tourupdate)
@@ -336,8 +338,6 @@ function MapBox() {
     setHinhAnh(item.hinhAnh[0])
     setUrl(item.hinhAnh[0])
 
-    setLat(item.latitude)
-    setLng(item.longitude)
     setPhoBien(item.phoBien)
     setXuHuong(item.xuHuong)
     setShowForm(true)
@@ -349,8 +349,10 @@ function MapBox() {
     setViewState({
       longitude: item.longitude,
       latitude: item.latitude,
-      zoom: 11.5
+      zoom: 13.5
     })
+    setLat(item.latitude)
+    setLng(item.longitude)
     console.log(item)
     setTourClicked(item)
     setPopupInfo({
@@ -361,7 +363,6 @@ function MapBox() {
       "image": item.hinhAnh[0]
     })
     setShowPopup(true)
-    setUrl(item.hinhAnh[0])
   }
   // Chọn thể loại
   const handleSetTheLoai = (listTheLoai) => {
@@ -472,11 +473,6 @@ function MapBox() {
     setViTriHD(item.viTri)
     setThongTinHD(item.thongTin)
     setThoiGianHD(item.thoiGianHD)
-    setViewState({
-      longitude: item.longitude,
-      latitude: item.latitude,
-      zoom: 11.5
-    })
     setUrlAmThanh(item.amThanh)
     if (item.amThanh) {
       setAmThanh(item.amThanh)
@@ -500,7 +496,7 @@ function MapBox() {
     setViewState({
       longitude: item.longitude,
       latitude: item.latitude,
-      zoom: 11.5
+      zoom: 14.5
     })
     setShowForm(false)
     setShowFormHoatDong(true)
@@ -531,7 +527,7 @@ function MapBox() {
     setUrlAmThanh("https://firebasestorage.googleapis.com/v0/b/tourapp-d8ea8.appspot.com/o/mp3s%2Fsound.mp3?alt=media&token=cbb310b2-b3f6-49ae-9d95-3b5785393ccc")
   }
   const deleteHoatDongById = async (item) => {
-    const result = await axios.delete(deleteHoatDong , {
+    const result = await axios.delete(deleteHoatDong, {
       params: {
         document_id: item.id
       }
@@ -602,8 +598,8 @@ function MapBox() {
           lng: response.data.features[0].center[0],
           lat: response.data.features[0].center[1]
         })
-        setLat(arrNewAddress[0].lat)
-        setLng(arrNewAddress[0].lng)
+        setLat(response.data.features[0].center[1])
+        setLng(response.data.features[0].center[0])
         setViewState({
           longitude: response.data.features[0].center[0],
           latitude: response.data.features[0].center[1],
@@ -658,7 +654,7 @@ function MapBox() {
     handleResultData()
     setListSearch([])
     setListSearchHD([])
-  }, [ listHoatDong])
+  }, [listHoatDong])
 
   return (
     <Map
@@ -692,9 +688,9 @@ function MapBox() {
         }}
 
       >
-        <img src="https://firebasestorage.googleapis.com/v0/b/tourapp-d8ea8.appspot.com/o/mapbox-icon.png?alt=media&token=a70dd5be-1312-4f84-aa53-c0b6092b9e75" alt="img-maker-icon"/>
+        <img src="https://firebasestorage.googleapis.com/v0/b/tourapp-d8ea8.appspot.com/o/mapbox-icon.png?alt=media&token=a70dd5be-1312-4f84-aa53-c0b6092b9e75" alt="img-maker-icon" />
       </Marker>
-      {showPopup && (
+      {showPopup && popupInfo && (
         <Popup
           anchor="top"
           longitude={Number(popupInfo.lng)}
@@ -710,7 +706,7 @@ function MapBox() {
               Wikipedia
             </a>
           </div>
-          <img width="100%" src={popupInfo.image} alt="img-hd-tour"/>
+          <img width="100%" src={popupInfo.image} alt="img-hd-tour" />
         </Popup>
       )}
       <NavigationControl position="bottom-right" />
@@ -813,7 +809,7 @@ function MapBox() {
 
         {
           showForm ?
-            <Form style={{ display: 'flex', flex: 0.5, backgroundColor: '#e0ffff', minWidth: 450, width: '100%', height: "100%", justifyContent: "flex-start", overflow: "auto" }} className='group-control' onSubmit={() => handSubmit()}>
+            <Form style={{ display: 'flex', flex: 0.5, backgroundColor: '#e0ffff', minWidth: 450, width: '100%', height: "100%", justifyContent: "flex-start", overflow: "auto" }} className='group-control' >
               <Form.Group className='title-them-tour' style={{ width: "100%" }}>
                 <Button variant="outline-danger"
                   onClick={() => setShowForm(!showForm)}
@@ -974,7 +970,6 @@ function MapBox() {
 
 
               </Form.Group>
-              <Form.Label className='label-locate'>vị trí trên bản đồ: </Form.Label>
               <Form.Group style={{ marginTop: 10, width: "100%", display: 'flex', flexDirection: 'row' }}>
                 <Form.Group style={{ flex: 0.48 }}>
                   <Form.Label className='label-loai-tour'>longitude:</Form.Label>
@@ -1051,7 +1046,7 @@ function MapBox() {
                         </div>
                       </div>
                     </PopupNote>
-                    
+
                     <PopupNote className="xoa_popub" showInfoPopup={isUpdatePopup} trigger={isUpdatePopup} setTrigger={setIsUpdatePopup} >
                       <div
                         style={{
@@ -1077,7 +1072,7 @@ function MapBox() {
                       </div>
                     </PopupNote>
                   </div>
-                  : <Button style={{ width: 150 }} type="submit" variant="primary">Thêm</Button>
+                  : <Button style={{ width: 150 }} onClick={() => handSubmit()} variant="primary">Thêm</Button>
                 }
               </Form.Group>
 

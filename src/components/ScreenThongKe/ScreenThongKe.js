@@ -437,7 +437,8 @@ export default function ScreenThongKe() {
                             {/* <!-- END STACK CHART CONTROLS PORTLET--> */}
                             <div className='thongke-fluid-left'>
                                 <div className='tuong-tac-content'>
-                                    <p> ID : {selectedIdTour}</p>
+                                    <p style={{paddingLeft: 10, fontSize: 20, fontWeight: 'bold'}}>Danh Sách Tương Tác Trong Tất Cả Các Năm</p>
+                                    <p style={{paddingLeft: 10}}> ID : {selectedIdTour}</p>
                                     {/* <p>  {tourName}</p> */}
                                     <div className='tuong-tac-body'>
                                         <Accordion defaultActiveKey="0" style={{ width: "100%", padding: 10 }}>

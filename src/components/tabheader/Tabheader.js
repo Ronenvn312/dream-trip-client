@@ -138,21 +138,21 @@ export const Tabheader = (props) => {
                   </div>
                 </div>
               </PopupNote>
-              <ListGroup style={{ background: '#B3E5FC' }} className='action-menu' defaultActiveKey="#bangdieukhien">
+              <ListGroup style={{ background: '#27a9e3'}} className='action-menu' defaultActiveKey="#bangdieukhien">
                 <ListGroup.Item onClick={() => handShowAllTour()} style={{ background: 'none', fontWeight: 'bold', fontFamily: 'cursive' }} action href="#bangdieukhien">
-                  <img className='icon-tab' style={{ width: 30, height: 30, marginRight: 10 }} src={require('../../assets/tab_left/design.png')} alt="use" />
+                  <img className='icon-tab' style={{ width: 30, height: 30, marginRight: 10 }} src='https://firebasestorage.googleapis.com/v0/b/tourapp-d8ea8.appspot.com/o/asset%2Fbangdieukhien-icon.png?alt=media&token=5ea1af23-a7da-47fe-b731-6822fc9b0015' alt="use" />
                   Bảng điều khiển
                 </ListGroup.Item>
                 <ListGroup.Item onClick={() => handShowActionThemTour()} style={{ background: 'none', fontWeight: 'bold', fontFamily: 'cursive' }} action href="#thongtintour">
-                  <img className='icon-tab' style={{ width: 30, height: 30, marginRight: 10 }} src={require('../../assets/tab_left/Combined.png')} alt="use" />
+                  <img className='icon-tab' style={{ width: 30, height: 30, marginRight: 10 }} src='https://firebasestorage.googleapis.com/v0/b/tourapp-d8ea8.appspot.com/o/asset%2Fquanlytour-icon.png?alt=media&token=e8508cf5-147d-48f7-924e-18eb4916fbe2' alt="use" />
                   Quản lý Tour
                 </ListGroup.Item>
                 <ListGroup.Item onClick={() => handShowThongKe()} style={{ background: 'none', fontWeight: 'bold', fontFamily: 'cursive', display: 'flex', flexDirection: 'row' }} action href='#thongke'>
-                  <img className='icon-tab' style={{ width: 30, height: 30, marginRight: 10 }} src={require('../../assets/tab_left/Combined.png')} alt="use" />
+                  <img className='icon-tab' style={{ width: 30, height: 30, marginRight: 10 }} src='https://firebasestorage.googleapis.com/v0/b/tourapp-d8ea8.appspot.com/o/asset%2Fthongke-icon.png?alt=media&token=de6d6a5b-f4cb-4993-a2d0-1d0abc9babce' alt="use" />
                   Quản lý thống kê
                 </ListGroup.Item>
                 <ListGroup.Item onClick={() => handleShowTaiKhoan()} style={{ background: 'none', fontWeight: 'bold', fontFamily: 'cursive' }} action href='#taikhoan'>
-                  <img className='icon-tab' style={{ width: 30, height: 30, marginRight: 10 }} src={require('../../assets/tab_left/setting.png')} alt="use" />
+                  <img className='icon-tab' style={{ width: 30, height: 30, marginRight: 10 }} src='https://firebasestorage.googleapis.com/v0/b/tourapp-d8ea8.appspot.com/o/asset%2Fquanlytaikhoan-icon.png?alt=media&token=64489909-4477-4f9c-a43f-055e8708c511' alt="use" />
                   Quản lý tài khoản
                 </ListGroup.Item>
 

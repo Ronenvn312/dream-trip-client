@@ -82,7 +82,9 @@
 }
 
 .user-email {
-    color: black;
+    color: rgba(74, 166, 228, 0.829);
+    margin-top: 18px;
+    font-weight: bold;
 }
 
 .user-avatar {
@@ -91,6 +93,7 @@
     min-width: 90px;
     min-height: 90px;
     background-color: white;
+    /* max-height: 90px; */
 }
 
 .btn_Them {

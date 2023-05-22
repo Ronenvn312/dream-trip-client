@@ -30,6 +30,7 @@ export default function ScreenThongKe() {
     const [tongDatTour, setTongDatTour] = useState(0)
     const [danhSachTour, setDanhSachTour] = useState([])
     // thong ke tuong tac
+    const [selectedFilterForOne, setSelectedFilterForOne] = useState("all")
     const [tuongTac, setTuongTac] = useState({
         "tourId": "",
         "userDaThich": [
@@ -119,6 +120,10 @@ export default function ScreenThongKe() {
         setSelectedNameOfOne(event.target.value);
         console.log(event.target.value)
     };
+    const handleSelectedFilterForOne = (event) => {
+        setSelectedFilterForOne(event.target.value);
+        console.log(event.target.value)
+    };
     const handleSelectChangeThang = (event) => {
         setSelectedThang(event.target.value);
         console.log(event.target.value)
@@ -136,6 +141,7 @@ export default function ScreenThongKe() {
         for (let index = 1; index <= 12; index++) {
             listT.push(index);
         }
+        listT.push("Theo Qúy")
         setListNam(listN)
         setListThang(listT)
     }
@@ -143,9 +149,15 @@ export default function ScreenThongKe() {
         let sum = 0;
         let sumLuotDat = 0;
         let sumLuotThich = 0;
+        let thangSearch = 5;
+        if (selectedThang == 'Theo Qúy') {
+            thangSearch = 5;
+        } else {
+            thangSearch = selectedThang
+        }
         const result = await axios.get(findThongKeTheoThang, {
             params: {
-                thang: selectedThang,
+                thang: thangSearch,
                 nam: selectedNam
             }
         })
@@ -168,17 +180,36 @@ export default function ScreenThongKe() {
         handleThongKeCacThang()
     }
     const handleThongKeCacThang = async () => {
+        const ThongKeQuyResult = []
         const result = await axios.get(findByNam, {
             params: {
                 nam: selectedNam
             }
         })
         if (result.data) {
-            console.log(result.data)
-            setData(result.data)
+            if (selectedThang == 'Theo Qúy') {
+                result.data.forEach((item, index) => {
+                    if (index == 2 || index == 5 || index == 8 || index == 11) {
+                        var quy = {
+                            name: `Tháng ${index - 1} - ${index + 1}`,
+                            slThich: result.data[index].slThich + result.data[index - 1].slThich + result.data[index - 2].slThich,
+                            slDat: result.data[index].slDat + result.data[index - 1].slDat + result.data[index - 2].slDat,
+                            slThemKeHoach: result.data[index].slThemKeHoach + result.data[index - 1].slThemKeHoach + result.data[index - 2].slThemKeHoach,
+                            amt: 2000
+                        }
+                        ThongKeQuyResult.push(quy)
+                    }
+                });
+                setData(ThongKeQuyResult)
+            }
+            else {
+                console.log(result.data)
+                setData(result.data)
+            }
         }
     }
     const handleThongKeCacThangOfOneTour = async () => {
+        let ThongKeQuyResultOfOne = []
         const result = await axios.get(findByNamAndTourId, {
             params: {
                 nam: selectedNamOfOne,
@@ -186,8 +217,26 @@ export default function ScreenThongKe() {
             }
         })
         if (result.data) {
-            console.log(result.data)
-            setDataOfOne(result.data)
+            if (selectedFilterForOne == 'quy') {
+                result.data.forEach((item, index) => {
+                    if (index == 2 || index == 5 || index == 8 || index == 11) {
+                        var quy = {
+                            name: `Tháng ${index - 1} - ${index + 1}`,
+                            slThich: result.data[index].slThich + result.data[index - 1].slThich + result.data[index - 2].slThich,
+                            slDat: result.data[index].slDat + result.data[index - 1].slDat + result.data[index - 2].slDat,
+                            slThemKeHoach: result.data[index].slThemKeHoach + result.data[index - 1].slThemKeHoach + result.data[index - 2].slThemKeHoach,
+                            amt: 2000
+                        }
+                        ThongKeQuyResultOfOne.push(quy)
+                    }
+                });
+                setDataOfOne(ThongKeQuyResultOfOne)
+            }
+            else {
+                console.log(result.data)
+                setDataOfOne(result.data)
+            }
+
         }
     }
     // const handleClickTho
@@ -216,11 +265,15 @@ export default function ScreenThongKe() {
                             <i className="icon-comments"></i>
                             <div className="details">
                                 <div className="number">
-                                    {listTour.length}
+                                    <div className='img-content'>
+                                        <img className='img-number' src='https://firebasestorage.googleapis.com/v0/b/tourapp-d8ea8.appspot.com/o/asset%2Ftour.png?alt=media&token=83c14fda-7ce5-4374-9de0-4658b8ae6763' alt='tour' />
+                                    </div>
+                                    <div className="desc">
+                                        <p className='num'>{listTour.length}</p>
+                                        <p style={{ fontSize: 15, fontWeight: 'bold' }}>Tổng Số Lượng Tour</p>
+                                    </div>
                                 </div>
-                                <div className="desc">
-                                    Tour
-                                </div>
+
                             </div>
                         </div>
 
@@ -243,11 +296,15 @@ export default function ScreenThongKe() {
                             <i className="icon-comments"></i>
                             <div className="details">
                                 <div className="number">
-                                    {tongLuotThich}
+                                    <div className='img-content'>
+                                        <img className='img-number' src='https://firebasestorage.googleapis.com/v0/b/tourapp-d8ea8.appspot.com/o/asset%2Fthich.png?alt=media&token=029b07ad-f963-4023-b8d3-c2be8239a175' alt='tour' />
+                                    </div>
+                                    <div className="desc">
+                                        <p className='num'>{tongLuotThich}</p>
+                                        <p style={{ fontSize: 15, fontWeight: 'bold' }}> Tổng lượt thích trong tháng</p>
+                                    </div>
                                 </div>
-                                <div className="desc">
-                                    Tổng lượt thích trong tháng
-                                </div>
+
                             </div>
                         </div>
 
@@ -262,12 +319,17 @@ export default function ScreenThongKe() {
                             <i className="icon-comments"></i>
                             <div className="details">
                                 <div className="number">
-                                    {tongTuongTac}
+                                    <div className='img-content'>
+                                        <img className='img-number' src='https://firebasestorage.googleapis.com/v0/b/tourapp-d8ea8.appspot.com/o/asset%2Ftuongtac.png?alt=media&token=e01b31de-0bf8-4cc4-b371-c11ff9109d02' alt='tour' />
+                                    </div>
+                                    <div className="desc">
+                                        <p className='num'>{tongTuongTac}</p>
+                                        <p style={{ fontSize: 15, fontWeight: 'bold' }}> Số lượng tương tác trong tháng</p>
+                                    </div>
                                 </div>
-                                <div className="desc">
-                                    Số lượng tương tác trong tháng
-                                </div>
+
                             </div>
+
                         </div>
 
                         <a className="more" href="#">
@@ -281,11 +343,15 @@ export default function ScreenThongKe() {
                             <i className="icon-comments"></i>
                             <div className="details">
                                 <div className="number">
-                                    {tongDatTour}
+                                    <div className='img-content'>
+                                        <img className='img-number' src='https://firebasestorage.googleapis.com/v0/b/tourapp-d8ea8.appspot.com/o/asset%2Fdat.png?alt=media&token=88a1842c-22b3-4224-a5d8-e59fa1371193' alt='tour' />
+                                    </div>
+                                    <div className="desc">
+                                        <p className='num'>{tongDatTour}</p>
+                                        <p style={{ fontSize: 15, fontWeight: 'bold' }}>Số lượng đặt tour trong tháng</p>
+                                    </div>
                                 </div>
-                                <div className="desc">
-                                    Số lượng đặt tour trong tháng
-                                </div>
+
                             </div>
                         </div>
 
@@ -306,7 +372,7 @@ export default function ScreenThongKe() {
 
                         <Form style={{ flexDirection: 'row', display: "flex", marginLeft: 40, marginBottom: 20 }}>
                             <Form.Group controlId="exampleForm.SelectCustom" style={{ flex: 0.11 }}>
-                                <Form.Label style={{ color: "#fff" }}>Chọn tháng: </Form.Label>
+                                <Form.Label style={{ color: "black" }}>Chọn tháng hoặc quý: </Form.Label>
                                 <Form.Select value={selectedThang} onChange={handleSelectChangeThang}>
                                     {
                                         listThang.map((item) => {
@@ -316,7 +382,7 @@ export default function ScreenThongKe() {
                                 </Form.Select>
                             </Form.Group>
                             <Form.Group controlId="exampleForm.SelectCustom" style={{ flex: 0.11, marginLeft: 20 }}>
-                                <Form.Label style={{ color: "#fff" }}>chọn năm: </Form.Label>
+                                <Form.Label style={{ color: "black" }}>chọn năm: </Form.Label>
                                 <Form.Select value={selectedNam} onChange={handleSelectChangeNam}>
                                     {
                                         listNam.map((item) => {
@@ -326,7 +392,7 @@ export default function ScreenThongKe() {
                                 </Form.Select>
                             </Form.Group>
                             <Form.Group controlId="exampleForm.SelectCustom" style={{ flex: 0.11, marginLeft: 20 }}>
-                                <Form.Label style={{ color: "#fff" }}>Hiệu quả: </Form.Label>
+                                <Form.Label style={{ color: "black" }}>Hiệu quả: </Form.Label>
                                 <Form.Select value={selectedHieuQua} onChange={handleSelectChangeHieuQua}>
                                     <option value="cao nhat">Tốt nhất</option>
                                     <option value="thap nhat">Thấp nhất</option>
@@ -409,13 +475,20 @@ export default function ScreenThongKe() {
                                 </Form.Select>
                             </Form.Group>
                             <Form.Group controlId="exampleForm.SelectCustom" style={{ flex: 0.11, marginLeft: 20 }}>
-                                <Form.Label style={{ color: "#fff" }}>chọn năm: </Form.Label>
+                                <Form.Label style={{ color: "black" }}>chọn năm: </Form.Label>
                                 <Form.Select value={selectedNamOfOne} onChange={handleSelectChangeNamOfOne}>
                                     {
                                         listNam.map((item) => {
                                             return <option value={item}>Năm {item}</option>
                                         })
                                     }
+                                </Form.Select>
+                            </Form.Group>
+                            <Form.Group controlId="exampleForm.SelectCustom" style={{ flex: 0.11, marginLeft: 20 }}>
+                                <Form.Label style={{ color: "black" }}>Tháng hoặc Qúy: </Form.Label>
+                                <Form.Select value={selectedFilterForOne} onChange={handleSelectedFilterForOne}>
+                                    <option value="all">Theo Tháng</option>
+                                    <option value="quy">Theo Qúy</option>
                                 </Form.Select>
                             </Form.Group>
                             <Form.Group style={{ flex: 0.18, marginTop: 32, marginLeft: 20, justifyContent: 'flex-end', alignItems: 'flex-end', flexDirection: 'column' }}>
@@ -427,23 +500,22 @@ export default function ScreenThongKe() {
                             </Form.Group>
                         </Form>
                         <div className='thongke-fluid' >
-
                             {/* <!-- BEGIN STACK CHART CONTROLS PORTLET--> */}
                             <div className='thongke-fluid-right'>
-                                <h5 className='thongke-fluid-right-title'>Thống kế lượng tương tác tour các tháng trong nắm {selectedNam}</h5>
+                                <h5 className='thongke-fluid-right-title'>Thống Kế Lượng Tương Tác Tour Các {selectedFilterForOne == 'quy' ? "Qúy" : "Tháng"} Trong Nắm {selectedNam}</h5>
                                 <Chart data={dataOfOne} />
                             </div>
 
                             {/* <!-- END STACK CHART CONTROLS PORTLET--> */}
                             <div className='thongke-fluid-left'>
                                 <div className='tuong-tac-content'>
-                                    <p style={{paddingLeft: 10, fontSize: 20, fontWeight: 'bold'}}>Danh Sách Tương Tác Trong Tất Cả Các Năm</p>
-                                    <p style={{paddingLeft: 10}}> ID : {selectedIdTour}</p>
+                                    <p style={{ paddingLeft: 10, fontSize: 20, fontWeight: 'bold' }}>Danh Sách Tương Tác Trong Tất Cả Các Năm</p>
+                                    <p style={{ paddingLeft: 10 }}> ID : {selectedIdTour}</p>
                                     {/* <p>  {tourName}</p> */}
                                     <div className='tuong-tac-body'>
                                         <Accordion defaultActiveKey="0" style={{ width: "100%", padding: 10 }}>
                                             <Accordion.Item eventKey="0">
-                                                <Accordion.Header><p style={{ color: "black" }}>Lượt Thích: </p> <p style={{color: "red", paddingLeft: 10}}> {tuongTac.userDaThich.length}</p></Accordion.Header>
+                                                <Accordion.Header><p style={{ color: "black" }}>Lượt Thích: </p> <p style={{ color: "red", paddingLeft: 10 }}> {tuongTac.userDaThich.length}</p></Accordion.Header>
                                                 <Accordion.Body>
                                                     <div className='danh-sach-thich'>
                                                         <ul>
@@ -458,7 +530,7 @@ export default function ScreenThongKe() {
                                                 </Accordion.Body>
                                             </Accordion.Item>
                                             <Accordion.Item eventKey="1">
-                                                <Accordion.Header><p style={{ color: "black" }}>Lượt Đặt: </p> <p style={{color: "red", paddingLeft: 10}}> {tuongTac.userDaDat.length}</p></Accordion.Header>
+                                                <Accordion.Header><p style={{ color: "black" }}>Lượt Đặt: </p> <p style={{ color: "red", paddingLeft: 10 }}> {tuongTac.userDaDat.length}</p></Accordion.Header>
                                                 <Accordion.Body>
                                                     <div className='danh-sach-dat'>
                                                         <ul>
@@ -535,7 +607,7 @@ export default function ScreenThongKe() {
                                                 </Accordion.Body>
                                             </Accordion.Item>
                                             <Accordion.Item eventKey="2">
-                                                <Accordion.Header><p style={{ color: "black" }}>Lượt Lên kê hoạch: </p> <p style={{color: "red", paddingLeft: 10}}> {tuongTac.userLenKeHoach.length}</p></Accordion.Header>
+                                                <Accordion.Header><p style={{ color: "black" }}>Lượt Lên kê hoạch: </p> <p style={{ color: "red", paddingLeft: 10 }}> {tuongTac.userLenKeHoach.length}</p></Accordion.Header>
                                                 <Accordion.Body>
                                                     <div className='danh-sach-them'>
                                                         <ul>

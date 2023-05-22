@@ -429,7 +429,7 @@ export default function ScreenTaiKhoan(props) {
                                                 <p style={{ color: 'gray', flex: 0.9 }}> Update Error! </p>
                                                 <Button variant="danger" style={{ fontSize: 16 }} onClick={() => setIsErrorUpdate(false)}>x</Button>
                                             </div>
-                                            <p style={{ color: "red", fontSize: 14 }}>Thông tin nhập vào không chính xác!</p>
+                                            <p style={{ color: "red", fontSize: 14 }}>Mật khẩu cũ hoặc thông tin nhập vào chưa đúng!</p>
                                             {/* <p style={{ color: "gray" }}>Mã tour: {tourClicked.document_id}</p>
                                             <p style={{ color: "gray" }}>Tên tour: {tourClicked.tenTour}</p> */}
                                             <div style={{ marginTop: 30, display: 'flex', justifyContent: 'space-between', flexDirection: 'row' }}>

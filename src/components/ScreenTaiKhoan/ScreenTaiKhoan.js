@@ -157,7 +157,11 @@ export default function ScreenTaiKhoan(props) {
             console.log(user)
             props.setThongTinUser(user)
             setIsUpdatePopup(false)
+            setIsLogPopup(true)
+            setContentPopup("Cập nhật thông tin thành công!")
         } else {
+            setIsLogPopup(true)
+            setContentPopup("Cập nhật thông tin không thành công!")
             console.log("Update Error")
         }
     }
@@ -175,8 +179,9 @@ export default function ScreenTaiKhoan(props) {
             console.log(res.data)
             axios.put(updateMK, res.data)
                 .then((result) => {
-                    console.log(result.data)
                     setIsUpdateMatKhauPopup(false)
+                    setIsLogPopup(true)
+                    setContentPopup("Cập nhật mật khẩu thành công!")
                 })
                 .catch((error) => {
                     setIsUpdateMatKhauPopup(false)
@@ -247,6 +252,8 @@ export default function ScreenTaiKhoan(props) {
             })
         }
     }
+    const [isLogPopup, setIsLogPopup] = useState(false)
+    const [contentPopup, setContentPopup] = useState("")
     return (
         <div className='tai-khoan-container'>
             <div className='thongke-header'>
@@ -441,36 +448,6 @@ export default function ScreenTaiKhoan(props) {
                             </div>
                         </Accordion.Body>
                     </Accordion.Item>
-                    {/* <Accordion.Item eventKey="2">
-                        <Accordion.Header>Danh sách tài khoản người dùng</Accordion.Header>
-                        <Accordion.Body>
-                            <div className='cap-nhat-mat-khau-view'>
-                                <div className='title-cap-nhat-mat-khau'>
-                                    <h5>Tài khoản sử dụng ứng dụng Dream Trip</h5>
-                                </div>
-                                <div>
-                                    <table>
-                                        <thead>
-                                            <tr>
-                                                <th>STT</th>
-                                                <th>tên tài khoản</th>
-                                                <th>password</th>
-                                                <th>status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>nguoidung07@gmail.com</td>
-                                                <td>Aa12345678</td>
-                                                <td>true</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </Accordion.Body>
-                    </Accordion.Item> */}
                 </Accordion>
                 <div className='thong-tin-nguoi-dung'>
                     {/* Begin thông tin người dùng */}
@@ -478,7 +455,28 @@ export default function ScreenTaiKhoan(props) {
                     {/* begin form update */}
                 </div>
             </div>
-
+            <PopupNote className="log_popup" showInfoPopup={isLogPopup} trigger={isLogPopup} setTrigger={setIsLogPopup} >
+                <div
+                    style={{
+                        minHeight: '200px',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        fontSize: 22
+                    }}>
+                    <div style={{ width: "100%", flexDirection: "row", display: "flex", justifyContent: "center" }}>
+                        <p style={{ color: 'gray', flex: 0.9 }}> Update Data </p>
+                        <Button variant="danger" style={{ fontSize: 16 }} onClick={() => setIsLogPopup(false)}>x</Button>
+                    </div>
+                    <p style={{ color: "red", fontSize: 14 }}>{contentPopup}</p>
+                    {/* <p style={{ color: "gray" }}>Mã tour: {tourClicked.document_id}</p>
+                                            <p style={{ color: "gray" }}>Tên tour: {tourClicked.tenTour}</p> */}
+                    <div style={{ marginTop: 30, display: 'flex', justifyContent: 'space-between', flexDirection: 'row' }}>
+                        <Button style={{ marginRight: 20, width: 140 }} variant='outline-secondary' onClick={() => setIsLogPopup(false)}>OK</Button>
+                       </div>
+                </div>
+            </PopupNote>
         </div>
     )
 }

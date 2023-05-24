@@ -16,7 +16,9 @@ import { deleteHoatDong, deleteTour, findAllTour, findAllsHDByTourId, insertHoat
 
 
 function MapBox() {
-
+  // Set is log popup 
+  const [isLogPopup, setIsLogPopup] = useState(false)
+  const [logContent, setLogContent] = useState("")
   const [lng, setLng] = useState(106.68921221955645)
   const [lat, setLat] = useState(10.772420997560602)
   const [showPopup, setShowPopup] = useState(false)
@@ -238,6 +240,8 @@ function MapBox() {
     console.log(result)
     handleResultData()
     setShowForm(false);
+    setIsLogPopup(true);
+    setLogContent("Thêm thành công!")
   }
   //handle Click Cập nhật tour
   const handleUpdate = async () => {
@@ -264,8 +268,9 @@ function MapBox() {
     if (result) {
       console.log(result)
       handleResultData()
-      setIsUpdatePopup(false
-      )
+      setIsLogPopup(true)
+      setLogContent("Cập nhật thành công!");
+      setIsUpdatePopup(false)
     } else {
       console.log("Cập nhật tour thất bại!")
     }
@@ -278,8 +283,21 @@ function MapBox() {
       }
     }).then((result) => {
       console.log(result)
-      handleShowPopupDeleteTour()
-      handleResultData()
+      if (result.data) {
+        setShowForm(false)
+        handleShowPopupDeleteTour()
+        handleResultData()
+        setIsLogPopup(true)
+        setLogContent("Xóa thành công!");
+      } else {
+        handleShowPopupDeleteTour()
+        setIsLogPopup(true)
+        setLogContent("Xóa không thành công!");
+      }
+    }).catch((error) => {
+     
+      setIsLogPopup(true)
+      setLogContent("Xóa không thành công!");
     })
 
   }
@@ -532,10 +550,18 @@ function MapBox() {
         document_id: item.id
       }
     })
-    console.log(result)
-    handleResultHoatDongTour(tourClicked)
-    setIsDeleteHoatDongPopup(!isDeleteHoatDongPopup)
-    setShowFormHoatDong(!showFormHoatDong)
+    if (result.data) {
+      console.log(result)
+      handleResultHoatDongTour(tourClicked)
+      setIsDeleteHoatDongPopup(!isDeleteHoatDongPopup)
+      setShowFormHoatDong(!showFormHoatDong)
+      setIsLogPopup(true)
+      setLogContent("Xóa thành công!");
+    } else {
+      setIsDeleteHoatDongPopup(!isDeleteHoatDongPopup)
+      setIsLogPopup(true)
+      setLogContent("Xóa không thành công!");
+    }
   }
   // Click button them hoat dong
   const handleThemHoatDong = async () => {
@@ -558,6 +584,8 @@ function MapBox() {
     console.log(result)
     handleResultHoatDongTour(tourClicked)
     setShowFormHoatDong(!showFormHoatDong)
+    setIsLogPopup(true);
+    setLogContent("Thêm thành công!")
   }
   // Cập nhật hoạt động
   const handleUpdateHoatDong = async () => {
@@ -584,7 +612,12 @@ function MapBox() {
       handleResultHoatDongTour(tourClicked)
       console.log(tourClicked)
       setIsUpdateHoatDongPopup(false)
+      setIsLogPopup(true)
+      setLogContent("Cập nhật thành công")
     } else {
+      setIsUpdateHoatDongPopup(false)
+      setIsLogPopup(true)
+      setLogContent("Cập nhật hoạt động thất bại!")
       console.log("Cập nhật hoạt động thất bại!")
     }
   }
@@ -1071,14 +1104,36 @@ function MapBox() {
                         </div>
                       </div>
                     </PopupNote>
+
                   </div>
                   : <Button style={{ width: 150 }} onClick={() => handSubmit()} variant="primary">Thêm</Button>
                 }
+
               </Form.Group>
 
             </Form> : ""
         }
-
+        <PopupNote className="log_popup" showInfoPopup={isLogPopup} trigger={isLogPopup} setTrigger={setIsLogPopup} >
+          <div
+            style={{
+              minHeight: '200px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              alignItems: 'center',
+              fontSize: 18,
+              margin: 20
+            }}>
+            <div style={{ width: "100%", flexDirection: "row", display: "flex", justifyContent: "center" }}>
+              <p style={{ color: 'gray', flex: 0.9 }}> Update Data </p>
+              <Button variant="danger" style={{ fontSize: 16 }} onClick={() => setIsLogPopup(false)}>x</Button>
+            </div>
+            <p style={{ color: "red", fontSize: 14 }}>{logContent}</p>
+            <div style={{ marginTop: 30, display: 'flex', justifyContent: 'space-between', flexDirection: 'row' }}>
+              <Button style={{ marginRight: 20, width: 140 }} variant='outline-secondary' onClick={() => setIsLogPopup(false)}>OK</Button>
+            </div>
+          </div>
+        </PopupNote>
         {/* Form hoạt động */}
         {
           showFormHoatDong ?
@@ -1239,7 +1294,7 @@ function MapBox() {
                         <p style={{ color: "gray" }}>Tên Hoạt động: {hoatDongChecked.tieuDe}</p>
                         <div style={{ marginTop: 30, display: 'flex', justifyContent: 'space-between', flexDirection: 'row' }}>
                           <Button style={{ marginRight: 20, width: 140 }} variant='outline-secondary' onClick={() => setIsUpdateHoatDongPopup(false)}>Cancel</Button>
-                          <Button style={{ marginRight: 20, width: 140 }} variant='danger' onClick={() => handleUpdateHoatDong()}>Start update</Button>
+                          <Button style={{ marginRight: 20, width: 140 }} variant='danger' onClick={() => handleUpdateHoatDong()}>Start Update</Button>
                         </div>
                       </div>
                     </PopupNote>
